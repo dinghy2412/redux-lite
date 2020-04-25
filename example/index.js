@@ -1,3 +1,4 @@
+import { createStore, combineReducers } from '../src/index.js'
 
 const initState = {
     arr: ['Use Redux'],
@@ -27,12 +28,20 @@ let store = createStore(combineReducers({
     num: todoNum
 }, initState), ['Use Redux']);
 
+let testSubscribe = store.subscribe(() => {
+    console.log('isSubscribe')
+});
+let testSubscribe2 = store.subscribe(() => {
+    console.log('isSubscribe2')
+});
+
 store.dispatch({
     type: 'ADD_TODO',
     text: 'Read the docs'
 });
 console.log(store.getState());
-
+testSubscribe();
+testSubscribe2();
 store.dispatch({
     type: 'ADD_TODO_NUM',
     num: 1
